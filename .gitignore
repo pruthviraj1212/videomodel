@@ -1,0 +1,10 @@
+
+# Data
+data/
+runs/
+__pycache__/
+*.mp4
+*.pt
+videomodel/
+
+# Keep specific small files if needed, but generally ignore heavy artifacts

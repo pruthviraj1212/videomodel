@@ -2,6 +2,12 @@
 
 This project is a reusable Python package for detecting trash in videos using YOLOv8.
 
+## Pre-trained Model
+
+This package includes a pre-trained YOLOv8 model (`models/trash_detector_v1.pt`) specifically trained for trash detection. **You don't need to train anything or download additional models** - just install and use!
+
+The model is automatically used by default, so detection works immediately after installation.
+
 ## Installation
 
 1.  Clone the repository.
@@ -33,6 +39,12 @@ You can use the `trash-detector` command from anywhere in your terminal.
 
 ```bash
 trash-detector detect --source input_video.mp4 --output output_video.mp4 --conf 0.5
+```
+
+**Detect trash in an image:**
+
+```bash
+trash-detector detect --source input_image.jpg --output output_image.jpg
 ```
 
 **Train a model:**

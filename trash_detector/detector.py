@@ -56,6 +56,32 @@ class TrashDetector:
             cv2.destroyAllWindows()
             print(f"Processed video saved to {output_path}")
 
+    def process_image(self, image_path, output_path="output.jpg", conf=0.5):
+        """
+        Process a single image file, run detection, and save the output.
+
+        Args:
+            image_path (str): Path to input image.
+            output_path (str): Path to save the processed image.
+            conf (float): Confidence threshold.
+        """
+        import cv2
+        frame = cv2.imread(image_path)
+        if frame is None:
+            print(f"Error: Could not open image {image_path}")
+            return
+
+        print(f"Processing image: {image_path} -> {output_path}")
+        results = self.model.predict(frame, conf=conf, device=self.device, verbose=False)
+        
+        # Print detection count
+        for r in results:
+            print(f"Detected {len(r.boxes)} objects.")
+
+        annotated_frame = results[0].plot()
+        cv2.imwrite(output_path, annotated_frame)
+        print(f"Processed image saved to {output_path}")
+
     def predict_frame(self, frame, conf=0.5):
         """
         Run detection on a single frame.

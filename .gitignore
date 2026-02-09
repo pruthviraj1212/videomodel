@@ -26,7 +26,7 @@ data/
 runs/
 *.mp4
 *.pt
-!yolov8n.pt
+!models/trash_detector_v1.pt
 videomodel/
 output_*.mp4
 

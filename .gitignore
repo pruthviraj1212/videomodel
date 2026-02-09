@@ -1,10 +1,34 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
 
-# Data
+# Data & Models
 data/
 runs/
-__pycache__/
 *.mp4
 *.pt
+!yolov8n.pt
 videomodel/
+output_*.mp4
 
-# Keep specific small files if needed, but generally ignore heavy artifacts
+# OS
+.DS_Store

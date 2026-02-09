@@ -1,41 +1,80 @@
-# Trash Detection Model
+# Trash Detector Package
 
-This project uses YOLOv8 to detect trash in videos.
+This project is a reusable Python package for detecting trash in videos using YOLOv8.
 
-## Setup
+## Installation
 
-1.  Install dependencies:
+1.  Clone the repository.
+2.  Install the package:
+
     ```bash
-    pip install -r requirements.txt
+    pip install .
     ```
 
-2.  Download dataset (if not already done):
+    Or for development (editable mode):
+
     ```bash
-    python download_data.py
+    pip install -e .
     ```
 
-3.  Prepare dataset (after download):
-    - Ensure data is in `data/` directory.
-    - Update `data.yaml` if necessary.
+    Or directly from GitHub (if you host it there):
 
-## Training
+    ```bash
+    pip install git+https://github.com/YOUR_USERNAME/REPO_NAME.git
+    ```
 
-Train the model using the default configuration:
+## Usage
+
+### Command Line Interface (CLI)
+
+You can use the `trash-detector` command from anywhere in your terminal.
+
+**Detect trash in a video:**
 
 ```bash
-python src/train.py
+trash-detector detect --source input_video.mp4 --output output_video.mp4 --conf 0.5
+```
+
+**Train a model:**
+
+```bash
+trash-detector train --data data.yaml --epochs 50 --batch 16
+```
+
+### Python API
+
+You can also use the package in your Python scripts.
+
+**Inference:**
+
+```python
+from trash_detector import TrashDetector
+
+# Initialize detector
+detector = TrashDetector(model_path="yolov8n.pt")
+
+# Process a video
+detector.process_video("input_video.mp4", "output_video.mp4")
+
+# Process a single frame
+import cv2
+frame = cv2.imread("image.jpg")
+results = detector.predict_frame(frame)
+print(results)
+```
+
+**Training:**
+
+```python
+from trash_detector import TrashTrainer
+
+# Initialize trainer
+trainer = TrashTrainer(model_name="yolov8n.pt")
+
+# Train model
+trainer.train(data_yaml_path="data.yaml", epochs=10)
 ```
 
 ## Hardware Acceleration
 
-This project supports Hardware Acceleration on Apple Silicon (M1/M2/M3) using MPS (Metal Performance Shaders).
-- The scripts `src/train.py` and `src/inference.py` automatically detect if MPS is available and use it.
-- If MPS is not available, it will default to CUDA (if available) or CPU.
-
-## Inference
-
-Run detection on a video:
-
-```bash
-python src/inference.py --source input_video.mp4 --output output_video.mp4 --conf 0.5
-```
+This package automatically detects and uses Apple Silicon (MPS) or CUDA if available.

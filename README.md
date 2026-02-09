@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-# videomodel
-=======
 # Trash Detection Model
 
 This project uses YOLOv8 to detect trash in videos.
@@ -42,4 +39,3 @@ Run detection on a video:
 ```bash
 python src/inference.py --source input_video.mp4 --output output_video.mp4 --conf 0.5
 ```
->>>>>>> a9a1f86 (model)
